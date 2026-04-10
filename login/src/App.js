@@ -6,10 +6,10 @@ const API_BASE = process.env.REACT_APP_API_BASE;
 
 // 카카오 리디렉트 페이지 컴포넌트
 const KakaoRedirect = ({ onOAuthCallback }) => {
-  const [isProcessing, setIsProcessing] = useState(false);
+  const hasProcessed = React.useRef(false);
 
   useEffect(() => {
-    if (isProcessing) return;
+    if (hasProcessed.current) return;
 
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
@@ -22,13 +22,13 @@ const KakaoRedirect = ({ onOAuthCallback }) => {
     }
 
     if (code) {
-      setIsProcessing(true);
+      hasProcessed.current = true;
       window.history.replaceState({}, document.title, window.location.pathname);
       onOAuthCallback(code);
     } else {
       alert('인가 코드가 없습니다.');
     }
-  }, [onOAuthCallback, isProcessing]);
+  }, [onOAuthCallback]);
 
   return (
     <div style={{ padding: 20, textAlign: 'center' }}>
@@ -40,10 +40,10 @@ const KakaoRedirect = ({ onOAuthCallback }) => {
 
 // 구글 리디렉트 페이지 컴포넌트
 const GoogleRedirect = ({ onOAuthCallback }) => {
-  const [isProcessing, setIsProcessing] = useState(false);
+  const hasProcessed = React.useRef(false);
 
   useEffect(() => {
-    if (isProcessing) return;
+    if (hasProcessed.current) return;
 
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
@@ -56,13 +56,13 @@ const GoogleRedirect = ({ onOAuthCallback }) => {
     }
 
     if (code) {
-      setIsProcessing(true);
+      hasProcessed.current = true;
       window.history.replaceState({}, document.title, window.location.pathname);
       onOAuthCallback(code);
     } else {
       alert('인가 코드가 없습니다.');
     }
-  }, [onOAuthCallback, isProcessing]);
+  }, [onOAuthCallback]);
 
   return (
     <div style={{ padding: 20, textAlign: 'center' }}>
