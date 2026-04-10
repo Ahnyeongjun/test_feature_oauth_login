@@ -230,7 +230,7 @@ const App = () => {
         setLoginProvider('kakao');
         localStorage.setItem('userToken', token);
         localStorage.setItem('loginProvider', 'kakao');
-        alert('카카오 로그인 성공!');
+        window.location.href = '/';
       } else {
         const errorData = await res.text();
         throw new Error(`로그인 실패: ${res.status} - ${errorData}`);
@@ -261,7 +261,7 @@ const App = () => {
         setLoginProvider('google');
         localStorage.setItem('userToken', token);
         localStorage.setItem('loginProvider', 'google');
-        alert('구글 로그인 성공!');
+        window.location.href = '/';
       } else {
         const errorData = await res.text();
         throw new Error(`로그인 실패: ${res.status} - ${errorData}`);
