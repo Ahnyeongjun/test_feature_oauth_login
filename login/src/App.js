@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const KAKAO_CLIENT_ID = process.env.REACT_APP_KAKAO_CLIENT_ID;
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-const API_BASE = 'http://175.45.195.169:8080';
+const API_BASE = 'https://chukjibeob.store';
 
 // 카카오 리디렉트 페이지 컴포넌트
 const KakaoRedirect = ({ onOAuthCallback }) => {
