@@ -215,9 +215,11 @@ const App = () => {
     try {
       setError('');
       const kakaoRedirectUri = `${window.location.origin}/api/auth/kakao-redirect`;
-      const res = await fetch(`${API_BASE}/api/v1/auth/kakao/callback?code=${code}&redirect_uri=${encodeURIComponent(kakaoRedirectUri)}`, {
-        method: 'GET',
+      const res = await fetch(`${API_BASE}/api/v1/auth/kakao/callback`, {
+        method: 'POST',
         credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, redirectUri: kakaoRedirectUri }),
       });
 
       if (res.ok) {
@@ -244,9 +246,11 @@ const App = () => {
     try {
       setError('');
       const redirectUri = `${window.location.origin}/api/auth/google-redirect`;
-      const res = await fetch(`${API_BASE}/api/v1/auth/google/callback?code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`, {
-        method: 'GET',
+      const res = await fetch(`${API_BASE}/api/v1/auth/google/callback`, {
+        method: 'POST',
         credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code, redirectUri }),
       });
 
       if (res.ok) {
