@@ -214,7 +214,7 @@ const App = () => {
   const handleKakaoOAuthCallback = async (code) => {
     try {
       setError('');
-      const res = await fetch(`${API_BASE}/api/v1/auth/oauth/login/kakao?code=${code}`, {
+      const res = await fetch(`${API_BASE}/api/v1/auth/kakao/callback?code=${code}`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -244,7 +244,7 @@ const App = () => {
     try {
       setError('');
       const redirectUri = `${window.location.origin}/api/auth/google-redirect`;
-      const res = await fetch(`${API_BASE}/api/v1/auth/oauth/login/google?code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`, {
+      const res = await fetch(`${API_BASE}/api/v1/auth/google/callback?code=${code}&redirect_uri=${encodeURIComponent(redirectUri)}`, {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
